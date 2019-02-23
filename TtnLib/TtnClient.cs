@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace TtnLib
 {
-    public class TtnMain
+    public class TtnClient
     {
         #region Fields
         private IMqttClient _client;
@@ -30,7 +30,7 @@ namespace TtnLib
         #endregion
 
         #region Constructor
-        public TtnMain(string aplicationName, string accessKey, string region = "eu")
+        public TtnClient(string aplicationName, string accessKey, string region = "eu")
         {
             _aplicationName = aplicationName;
             _accessKey = accessKey;

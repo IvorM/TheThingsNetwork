@@ -10,7 +10,7 @@ namespace TtnTest
         [TestMethod]
         public async Task TestConnection()
         {
-            TtnMain client = new TtnMain("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
+            TtnClient client = new TtnClient("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
             await client.ConnectAsync();
             if (!client.Connected)
             {
@@ -21,7 +21,7 @@ namespace TtnTest
         [TestMethod]
         public async Task TestSendMessage()
         {
-            TtnMain client = new TtnMain("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
+            TtnClient client = new TtnClient("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
             await client.ConnectAsync();
             try
             {
@@ -38,7 +38,7 @@ namespace TtnTest
         public async Task TestReciveMessageAsync()
         {
             int counter = 0;
-            TtnMain client = new TtnMain("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
+            TtnClient client = new TtnClient("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c", "eu");
             await client.ConnectAsync();
             if (client.Connected)
             {

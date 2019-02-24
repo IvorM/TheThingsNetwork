@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TtnLib", "TtnLib\TtnLib.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TtnTest", "TtnTest\TtnTest.csproj", "{72B03702-BD5D-4FFF-8391-950AAB87BEFA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "ConsoleApp1\Example.csproj", "{533D97D2-3E43-45A6-AF7A-B07CECCAF6F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.csproj", "{533D97D2-3E43-45A6-AF7A-B07CECCAF6F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

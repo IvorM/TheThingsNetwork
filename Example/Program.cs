@@ -9,13 +9,23 @@ namespace ExampleCode
         static void Main(string[] args)
         {
             client = new TtnLib.TtnClient("lorawan_atmosphere_managment_algebra", "ttn-account-v2.OH-eGEPy5gt9BTnEetm9WTgEnxoCSwW_d3FIk9P7K2c");
-            client.ConnectAsync().Wait();
+            try
+            {
+                client.ConnectAsync().Wait();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
             if (client.Connected)
             {
                 client.SubscribeToChanelAsync("smt32").Wait();
             }
 
             client.OnMessageReceived += A_OnMessageReceived;
+
             try
             {
                 client.SendMessageAsync("smt32", "AA", 5, true).Wait();

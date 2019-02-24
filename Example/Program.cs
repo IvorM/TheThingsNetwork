@@ -13,10 +13,10 @@ namespace ExampleCode
             {
                 client.ConnectAsync().Wait();
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                Console.WriteLine(e.Message); ;
             }
            
             if (client.Connected)

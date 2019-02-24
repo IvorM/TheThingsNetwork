@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using MQTTnet;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Text;
+using System.Text.Encodings;
 
 namespace TtnLib
 {
@@ -42,10 +44,12 @@ namespace TtnLib
                                 .WithCredentials(_aplicationName, _accessKey)
                                 .Build();
 
-            _client = new MqttFactory().CreateMqttClient();
-            _client.Connected += MqttClient_Connected;
-            _client.Disconnected += MqttClient_Disconnected;
-            _client.ApplicationMessageReceived += MqttClient_ApplicationMessageReceived;
+         
+             _client = new MqttFactory().CreateMqttClient();
+            
+             _client.Connected += MqttClient_Connected;
+             _client.Disconnected += MqttClient_Disconnected;
+             _client.ApplicationMessageReceived += MqttClient_ApplicationMessageReceived;  
         }
         #endregion
 
@@ -62,12 +66,22 @@ namespace TtnLib
 
         #region Methods
         public async Task ConnectAsync()
-            => await _client.ConnectAsync(_clientOptions);
+        {
+            try
+            {
+                await _client.ConnectAsync(_clientOptions);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
+            
         public async Task<IList<MqttSubscribeResult>> SubscribeToChanelAsync(string deviceName)
             => await _client.SubscribeAsync($"{_aplicationName}/devices/{deviceName}/up");
 
-        public async Task UnsubscribeToChanelAsync(string deviceName)
+        public async Task UnsubscribeFromChanelAsync(string deviceName)
             => await _client.UnsubscribeAsync($"{_aplicationName}/devices/{deviceName}/up");
 
         public async Task SendMessageAsync(string deviceName, string message, int port = 1, bool confirmed = false)
@@ -77,10 +91,9 @@ namespace TtnLib
                         .WithPayload(JsonConvert.SerializeObject(
                             new Message() {
                                 confirmed = confirmed,
-                                payload_raw = "AQIDBA==",
-                                port = port,
-                                payload_fields = new Payload_Fields() { message = message } }
-                            ))
+                                payload_raw =Convert.ToBase64String(ASCIIEncoding.UTF8.GetBytes(message)),
+                                port = port
+                            }))
                         .Build();
             try
             {

@@ -16,7 +16,7 @@ namespace ExampleCode
             catch (Exception e)
             {
 
-                Console.WriteLine(e.Message); ;
+                Console.WriteLine(e.Message);
             }
            
             if (client.Connected)
